@@ -1,0 +1,42 @@
+
+{
+  "name": "CouplingPrivacy",
+  "uri": "http://example.com/schema/coupling",
+  "prefix": "cpl",
+  "xml": { "tagAlias": "lowerCase" },
+  "types": [
+    {
+      "name": "CplOnSequenceFlow",
+      "extends": ["bpmn:SequenceFlow"],
+      "properties": [
+        { "name": "coupling", "isAttr": true, "type": "Float" }
+      ]
+    },
+    {
+      "name": "CplOnTask",
+      "extends": [
+        "bpmn:Task",
+        "bpmn:UserTask",
+        "bpmn:ServiceTask",
+        "bpmn:ScriptTask",
+        "bpmn:ManualTask",
+        "bpmn:BusinessRuleTask",
+        "bpmn:SendTask",
+        "bpmn:ReceiveTask"
+      ],
+      "properties": [
+        { "name": "privacy", "isAttr": true, "type": "Float" }
+      ]
+    },
+    {
+      "name": "CplOnGroup",
+      "extends": [ "bpmn:Group" ],
+      "properties": [
+        { "name": "fragmentId",        "isAttr": true, "type": "String" },
+        { "name": "fragmentName",      "isAttr": true, "type": "String" },
+        { "name": "fragmentSize",      "isAttr": true, "type": "Integer" },
+        { "name": "couplingThreshold", "isAttr": true, "type": "Float" }
+      ]
+    }
+  ]
+}

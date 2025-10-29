@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+  xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+  xmlns:cpl="http://example.com/schema/coupling"
+  id="Defs_1" targetNamespace="http://bpmn.io/schema/bpmn">
+
+  <bpmn:process id="Process_1" isExecutable="false">
+    <bpmn:startEvent id="StartEvent_1" name="Start"/>
+
+    <!-- Tasks (each has cpl:privacy) -->
+    <bpmn:task id="Task_A" name="A" cpl:privacy="0.2"/>
+    <bpmn:task id="Task_B" name="B" cpl:privacy="0.6"/>
+    <bpmn:task id="Task_C" name="C" cpl:privacy="0.25"/>
+    <bpmn:task id="Task_D" name="D" cpl:privacy="0.4"/>
+    <bpmn:task id="Task_E" name="E" cpl:privacy="0.35"/>
+    <bpmn:task id="Task_F" name="F" cpl:privacy="0.5"/>
+    <bpmn:task id="Task_G" name="G" cpl:privacy="0.45"/>
+    <bpmn:task id="Task_H" name="H" cpl:privacy="0.6"/>
+
+    <bpmn:endEvent id="EndEvent_1" name="End"/>
+
+    <!-- Flows (with coupling where provided) -->
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_1" targetRef="Task_A"/>
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Task_A" targetRef="Task_B" cpl:coupling="0.8"/>
+    <bpmn:sequenceFlow id="Flow_3" sourceRef="Task_B" targetRef="Task_C" cpl:coupling="0.4"/>
+    <bpmn:sequenceFlow id="Flow_4" sourceRef="Task_C" targetRef="Task_D" cpl:coupling="0.9"/>
+    <bpmn:sequenceFlow id="Flow_5" sourceRef="Task_D" targetRef="Task_E" cpl:coupling="0.85"/>
+    <bpmn:sequenceFlow id="Flow_6" sourceRef="Task_E" targetRef="Task_F" cpl:coupling="0.44"/>
+    <bpmn:sequenceFlow id="Flow_7" sourceRef="Task_F" targetRef="Task_G" cpl:coupling="0.9"/>
+    <bpmn:sequenceFlow id="Flow_8" sourceRef="Task_G" targetRef="Task_H" cpl:coupling="0.95"/>
+    <bpmn:sequenceFlow id="Flow_9" sourceRef="Task_H" targetRef="EndEvent_1"/>
+
+    <!-- Text Annotations (privacy for EVERY task) -->
+    <bpmn:textAnnotation id="TA_Task_A_privacy"><bpmn:text>privacy: 0.2</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_B_privacy"><bpmn:text>privacy: 0.6</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_C_privacy"><bpmn:text>privacy: 0.25</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_D_privacy"><bpmn:text>privacy: 0.4</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_E_privacy"><bpmn:text>privacy: 0.35</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_F_privacy"><bpmn:text>privacy: 0.5</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_G_privacy"><bpmn:text>privacy: 0.45</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Task_H_privacy"><bpmn:text>privacy: 0.6</bpmn:text></bpmn:textAnnotation>
+
+    <!-- Associations Task ↔ Privacy Note -->
+    <bpmn:association id="Assoc_Task_A_privacy" sourceRef="TA_Task_A_privacy" targetRef="Task_A"/>
+    <bpmn:association id="Assoc_Task_B_privacy" sourceRef="TA_Task_B_privacy" targetRef="Task_B"/>
+    <bpmn:association id="Assoc_Task_C_privacy" sourceRef="TA_Task_C_privacy" targetRef="Task_C"/>
+    <bpmn:association id="Assoc_Task_D_privacy" sourceRef="TA_Task_D_privacy" targetRef="Task_D"/>
+    <bpmn:association id="Assoc_Task_E_privacy" sourceRef="TA_Task_E_privacy" targetRef="Task_E"/>
+    <bpmn:association id="Assoc_Task_F_privacy" sourceRef="TA_Task_F_privacy" targetRef="Task_F"/>
+    <bpmn:association id="Assoc_Task_G_privacy" sourceRef="TA_Task_G_privacy" targetRef="Task_G"/>
+    <bpmn:association id="Assoc_Task_H_privacy" sourceRef="TA_Task_H_privacy" targetRef="Task_H"/>
+
+    <!-- Text Annotations (coupling on flows) -->
+    <bpmn:textAnnotation id="TA_Flow_2_coupling"><bpmn:text>coupling: 0.8</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Flow_3_coupling"><bpmn:text>coupling: 0.4</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Flow_4_coupling"><bpmn:text>coupling: 0.9</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Flow_5_coupling"><bpmn:text>coupling: 0.85</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Flow_6_coupling"><bpmn:text>coupling: 0.44</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Flow_7_coupling"><bpmn:text>coupling: 0.9</bpmn:text></bpmn:textAnnotation>
+    <bpmn:textAnnotation id="TA_Flow_8_coupling"><bpmn:text>coupling: 0.95</bpmn:text></bpmn:textAnnotation>
+
+    <!-- Associations Flow ↔ Coupling Note -->
+    <bpmn:association id="Assoc_Flow_2_coupling" sourceRef="TA_Flow_2_coupling" targetRef="Flow_2"/>
+    <bpmn:association id="Assoc_Flow_3_coupling" sourceRef="TA_Flow_3_coupling" targetRef="Flow_3"/>
+    <bpmn:association id="Assoc_Flow_4_coupling" sourceRef="TA_Flow_4_coupling" targetRef="Flow_4"/>
+    <bpmn:association id="Assoc_Flow_5_coupling" sourceRef="TA_Flow_5_coupling" targetRef="Flow_5"/>
+    <bpmn:association id="Assoc_Flow_6_coupling" sourceRef="TA_Flow_6_coupling" targetRef="Flow_6"/>
+    <bpmn:association id="Assoc_Flow_7_coupling" sourceRef="TA_Flow_7_coupling" targetRef="Flow_7"/>
+    <bpmn:association id="Assoc_Flow_8_coupling" sourceRef="TA_Flow_8_coupling" targetRef="Flow_8"/>
+
+  </bpmn:process>
+
+  <!-- Diagram -->
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+
+      <!-- SHAPES -->
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="150" y="160" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="Task_A_di" bpmnElement="Task_A"><dc:Bounds x="230" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_B_di" bpmnElement="Task_B"><dc:Bounds x="360" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_C_di" bpmnElement="Task_C"><dc:Bounds x="490" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_D_di" bpmnElement="Task_D"><dc:Bounds x="620" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_E_di" bpmnElement="Task_E"><dc:Bounds x="750" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_F_di" bpmnElement="Task_F"><dc:Bounds x="880" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_G_di" bpmnElement="Task_G"><dc:Bounds x="1010" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_H_di" bpmnElement="Task_H"><dc:Bounds x="1140" y="140" width="100" height="80"/></bpmndi:BPMNShape>
+
+      <bpmndi:BPMNShape id="EndEvent_1_di" bpmnElement="EndEvent_1">
+        <dc:Bounds x="1280" y="160" width="36" height="36"/>
+      </bpmndi:BPMNShape>
+
+      <!-- PRIVACY NOTES (below tasks) -->
+      <bpmndi:BPMNShape id="TA_Task_A_privacy_di" bpmnElement="TA_Task_A_privacy"><dc:Bounds x="230" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_B_privacy_di" bpmnElement="TA_Task_B_privacy"><dc:Bounds x="360" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_C_privacy_di" bpmnElement="TA_Task_C_privacy"><dc:Bounds x="490" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_D_privacy_di" bpmnElement="TA_Task_D_privacy"><dc:Bounds x="620" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_E_privacy_di" bpmnElement="TA_Task_E_privacy"><dc:Bounds x="750" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_F_privacy_di" bpmnElement="TA_Task_F_privacy"><dc:Bounds x="880" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_G_privacy_di" bpmnElement="TA_Task_G_privacy"><dc:Bounds x="1010" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Task_H_privacy_di" bpmnElement="TA_Task_H_privacy"><dc:Bounds x="1140" y="230" width="110" height="30"/></bpmndi:BPMNShape>
+
+      <!-- COUPLING NOTES (above flows) -->
+      <bpmndi:BPMNShape id="TA_Flow_2_coupling_di" bpmnElement="TA_Flow_2_coupling"><dc:Bounds x="330" y="110" width="120" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Flow_3_coupling_di" bpmnElement="TA_Flow_3_coupling"><dc:Bounds x="460" y="110" width="120" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Flow_4_coupling_di" bpmnElement="TA_Flow_4_coupling"><dc:Bounds x="590" y="110" width="120" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Flow_5_coupling_di" bpmnElement="TA_Flow_5_coupling"><dc:Bounds x="720" y="110" width="120" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Flow_6_coupling_di" bpmnElement="TA_Flow_6_coupling"><dc:Bounds x="850" y="110" width="120" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Flow_7_coupling_di" bpmnElement="TA_Flow_7_coupling"><dc:Bounds x="980" y="110" width="120" height="30"/></bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TA_Flow_8_coupling_di" bpmnElement="TA_Flow_8_coupling"><dc:Bounds x="1110" y="110" width="130" height="30"/></bpmndi:BPMNShape>
+
+      <!-- FLOW EDGES -->
+      <bpmndi:BPMNEdge id="Flow_1_di" bpmnElement="Flow_1"><di:waypoint x="186" y="178"/><di:waypoint x="230" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_2_di" bpmnElement="Flow_2"><di:waypoint x="330" y="180"/><di:waypoint x="360" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_3_di" bpmnElement="Flow_3"><di:waypoint x="460" y="180"/><di:waypoint x="490" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_4_di" bpmnElement="Flow_4"><di:waypoint x="590" y="180"/><di:waypoint x="620" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_5_di" bpmnElement="Flow_5"><di:waypoint x="720" y="180"/><di:waypoint x="750" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_6_di" bpmnElement="Flow_6"><di:waypoint x="850" y="180"/><di:waypoint x="880" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_7_di" bpmnElement="Flow_7"><di:waypoint x="980" y="180"/><di:waypoint x="1010" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_8_di" bpmnElement="Flow_8"><di:waypoint x="1110" y="180"/><di:waypoint x="1140" y="180"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_9_di" bpmnElement="Flow_9"><di:waypoint x="1240" y="180"/><di:waypoint x="1280" y="178"/></bpmndi:BPMNEdge>
+
+      <!-- ASSOCIATION EDGES (privacy) -->
+      <bpmndi:BPMNEdge id="Assoc_Task_A_privacy_di" bpmnElement="Assoc_Task_A_privacy"><di:waypoint x="285" y="230"/><di:waypoint x="280" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_B_privacy_di" bpmnElement="Assoc_Task_B_privacy"><di:waypoint x="415" y="230"/><di:waypoint x="410" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_C_privacy_di" bpmnElement="Assoc_Task_C_privacy"><di:waypoint x="545" y="230"/><di:waypoint x="540" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_D_privacy_di" bpmnElement="Assoc_Task_D_privacy"><di:waypoint x="675" y="230"/><di:waypoint x="670" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_E_privacy_di" bpmnElement="Assoc_Task_E_privacy"><di:waypoint x="805" y="230"/><di:waypoint x="800" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_F_privacy_di" bpmnElement="Assoc_Task_F_privacy"><di:waypoint x="935" y="230"/><di:waypoint x="930" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_G_privacy_di" bpmnElement="Assoc_Task_G_privacy"><di:waypoint x="1065" y="230"/><di:waypoint x="1060" y="220"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Task_H_privacy_di" bpmnElement="Assoc_Task_H_privacy"><di:waypoint x="1195" y="230"/><di:waypoint x="1190" y="220"/></bpmndi:BPMNEdge>
+
+      <!-- ASSOCIATION EDGES (coupling) -->
+      <bpmndi:BPMNEdge id="Assoc_Flow_2_coupling_di" bpmnElement="Assoc_Flow_2_coupling"><di:waypoint x="385" y="140"/><di:waypoint x="345" y="155"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Flow_3_coupling_di" bpmnElement="Assoc_Flow_3_coupling"><di:waypoint x="515" y="140"/><di:waypoint x="475" y="155"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Flow_4_coupling_di" bpmnElement="Assoc_Flow_4_coupling"><di:waypoint x="645" y="140"/><di:waypoint x="605" y="155"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Flow_5_coupling_di" bpmnElement="Assoc_Flow_5_coupling"><di:waypoint x="775" y="140"/><di:waypoint x="735" y="155"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Flow_6_coupling_di" bpmnElement="Assoc_Flow_6_coupling"><di:waypoint x="905" y="140"/><di:waypoint x="865" y="155"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Flow_7_coupling_di" bpmnElement="Assoc_Flow_7_coupling"><di:waypoint x="1035" y="140"/><di:waypoint x="995" y="155"/></bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Flow_8_coupling_di" bpmnElement="Assoc_Flow_8_coupling"><di:waypoint x="1165" y="140"/><di:waypoint x="1125" y="155"/></bpmndi:BPMNEdge>
+
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
