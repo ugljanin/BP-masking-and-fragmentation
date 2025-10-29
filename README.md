@@ -5,6 +5,8 @@ A Node.js CLI that **transforms BPMN 2.0 XML files** by either:
 - **Fragmenting** tasks into BPMN groups based on coupling thresholds, or
 - **Masking** tasks based on privacy values.
 
+It allows applying masking and then fragmentation and vice-versa. Just make sure you update source BPMN file to be the one that is generated.
+
 It preserves BPMN-DI data so that the output remains viewable in BPMN modelers (Camunda Modeler, bpmn.io, etc.).
 
 ---
