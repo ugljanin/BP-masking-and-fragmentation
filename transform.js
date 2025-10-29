@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Usage:
-//   node cluster.js in.bpmn out.bpmn --mode=fragment --threshold=0.7 [--no-singletons] [--clear-old]
-//   node cluster.js in.bpmn out.bpmn --mode=mask --privacy=0.5 [--clear-old]
+//   node transform.js in.bpmn out.bpmn --mode=fragment --threshold=0.7 [--no-singletons] [--clear-old]
+//   node transform.js in.bpmn out.bpmn --mode=mask --privacy=0.5 [--clear-old]
 
 const fs = require('fs');
 const { DOMParser, XMLSerializer } = require('@xmldom/xmldom');
@@ -20,7 +20,7 @@ function parseArgs() {
   const args = process.argv.slice(2);
   if (args.length < 2) {
     console.error(
-      'Usage: node cluster.js input.bpmn output.bpmn [--mode=fragment|mask] [--threshold=0.7] [--privacy=0.5] [--no-singletons] [--clear-old]'
+      'Usage: node transform.js input.bpmn output.bpmn [--mode=fragment|mask] [--threshold=0.7] [--privacy=0.5] [--no-singletons] [--clear-old]'
     );
     process.exit(1);
   }
